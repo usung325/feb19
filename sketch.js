@@ -1,12 +1,14 @@
 let arr = [];
 let canvasX = 600;
-let numTile = 40;
+let numTile = 10;
 let rows = numTile;
 let cols = numTile;
 
 function setup() {
   createCanvas(canvasX, canvasX);
   console.log(arr);
+  //initiate the array
+  make2dArr(rows, cols);
 }
 
 
@@ -21,10 +23,48 @@ function make2dArr(rows, cols){
 }
 
 
+function checkNeighbSum(x, y, prevArr){
+  let sum = 0;
+  for (i = -1; i < 2; i++){
+    for (j = -1; j < 2; j++){
+      let tempX = (x + i);
+      let tempY = (y + j);
+      
+      // console.log(tempX, 'this is X');
+      // console.log(tempY, 'this is Y');
+      
+      if (tempX < 0 || tempY < 0 || tempX > rows-1 || tempY > cols-1 || (tempX == x && tempY == y)){
+        
+        sum = sum;
+        // console.log(sum,i,j, 'avoid');
+        // console.log(' ');
+      }
+      else{
+        
+        sum = sum + prevArr[tempY][tempX];
+        // console.log(prevArr[tempY][tempX], 'this is the ar val');
+        // console.log(sum,i,j, 'logged');
+        // console.log(' ');
+      }
+      
+    }
+  }
+  return sum
+}
+
+
+
 function draw() {
   background(220);
-  let sideX = width / numTile;
-  make2dArr(rows, cols);
+  
+  let sideX = canvasX / numTile;
+  
+  for (x = 0; x < rows; x++){
+    for (y = 0; y < cols; y++){
+      console.log(checkNeighbSum(x,y,arr));
+    }
+  }
+  
   
   for (i=0; i<rows; i++){
     for (j = 0; j < cols; j++){
