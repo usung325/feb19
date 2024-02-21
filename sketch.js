@@ -1,9 +1,10 @@
 let arr = [];
 let canvasX = 900;
-let numTile = 150;
+let numTile = 180;
 let rows = numTile;
 let cols = numTile;
 let new2dArr = [];
+
 
 function setup() {
   createCanvas(canvasX, canvasX);
@@ -12,19 +13,16 @@ function setup() {
   make2dArr(rows, cols);
 }
 
-
 function make2dArr(rows, cols){
   for (i = 0; i < rows; i++){
     arr[i] = [];
     new2dArr[i] = [];
-    
     for (j = 0; j < cols; j++){
       arr[i].push(floor(random(2)));
     }
   }
   return arr && new2dArr;
 }
-
 
 function checkNeighbSum(x, y, prevArr){
   let sum = 0;
@@ -58,10 +56,10 @@ function checkNeighbSum(x, y, prevArr){
 function keyPressed(){
   if (keyCode === LEFT_ARROW){
     let number = 800 % rows;
-    let radius = 50;
+    let radius = 400;
 
-    for (i = 0; i < number; i++){
-      for (j = 0; j < number; j++){
+    for (i = 30; i < number; i++){
+      for (j = 30; j < number; j++){
         if ((Math.floor(Math.sqrt(i * i + j * j)) <= radius)){
           arr[i][j] = 1;
         }
@@ -69,8 +67,6 @@ function keyPressed(){
     }
   }
 }
-
-
 
 function draw() {
   background(0);
@@ -100,6 +96,7 @@ function draw() {
       currNeighNum = checkNeighbSum(x,y,arr);
       currNum = arr[x][y];
 
+      // try 1, 2, 3, 4, 5, 6 for currNeighNum // 4 is original
       if (currNum == 0  && currNeighNum == 4){
         new2dArr[x][y] = 1;
       }
