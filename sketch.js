@@ -57,9 +57,14 @@ function checkNeighbSum(x, y, prevArr){
 
 function keyPressed(){
   if (keyCode === LEFT_ARROW){
-    for (i = rows/3 ; i < rows/1.2; i++){
-      for (j = cols/3; j < cols/1.2; j++){
-        arr[i][j] = 1;
+    let number = 800 % rows;
+    let radius = 50;
+
+    for (i = 0; i < number; i++){
+      for (j = 0; j < number; j++){
+        if ((Math.floor(Math.sqrt(i * i + j * j)) <= radius)){
+          arr[i][j] = 1;
+        }
       }
     }
   }
