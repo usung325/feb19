@@ -1,5 +1,6 @@
 let arr = [];
-let canvasX = 900; //900
+let canvasX = 500; //900
+let canvasY = 500; //900
 let numTile = 180; //180
 let rows = numTile; //numTile
 let cols = numTile; //numTile
@@ -7,7 +8,7 @@ let new2dArr = [];
 
 
 function setup() {
-  createCanvas(canvasX, canvasX); //canvasX, canvasX
+  createCanvas(canvasX, canvasY); //canvasX, canvasX
   console.log(arr);
   //initiate the array
   make2dArr(rows, cols);
@@ -26,8 +27,8 @@ function make2dArr(rows, cols){
 
 function checkNeighbSum(x, y, prevArr){
   let sum = 0;
-  for (i = -1; i < 2; i++){
-    for (j = -1; j < 2; j++){
+  for (i = 0; i < 1; i++){
+    for (j = -5; j < 7; j++){
       let tempX = (x + i);
       let tempY = (y + j);
       
